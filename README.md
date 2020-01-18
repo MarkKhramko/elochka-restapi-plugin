@@ -12,7 +12,7 @@
 
 Активировать Плагин `Elochka REST` в `/wp-admin` (Плагины -> Установленные -> Elochka REST -> Активировать)
 
-### API Routes
+## API Routes
 
 К роутам можно обращаться по схеме: `<HOSTNAME>/wp-json/v1/<ROUTE>`
 
