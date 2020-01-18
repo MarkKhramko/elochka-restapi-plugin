@@ -8,6 +8,9 @@
 
 `git clone https://github.com/MarkKhramko/elochka-restapi-plugin elochka-rest`
 
+## 2 
+
+Активировать Плагин `Elochka REST` в `/wp-admin` (Плагины -> Установленные -> Elochka REST -> Активировать)
 
 ### API Routes
 
