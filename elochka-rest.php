@@ -11,16 +11,7 @@
 	function receiveOrder($request){
 		global $woocommerce;
 
-		// Validate product Id
-		$productId = $request['product_id'];
-		if (!$productId){
-			return [
-				'error' => [
-					'description' => 'Please, provide "product_id" argument.'
-				]
-			];
-		}
-
+		// Validate Phone number
 		$phonenumber = $request['phonenumber'];
 		if (!$phonenumber){
 			return [
@@ -39,14 +30,23 @@
 		// Now we create the order
 		$order = wc_create_order();
 
-		// Add order with id in DB
-		$order->add_product(get_product($productId), 1); 
+		$productId = $request['product_id'];
+		if ($productId){
+			// Add order with id in DB
+			$order->add_product(get_product($productId), 1); 
+		}
+
 		// Add client info
 		$order->set_address($clientInfo, 'billing');
 
-		//
 		$order->calculate_totals();
 		$order->update_status("processing");
+
+		// Add message to note
+		$message = $request['message'];
+		if (!!$message){
+			$order->add_order_note($message, true);
+		}
 
 		return [
 			'error' => null,
